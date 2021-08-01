@@ -2,7 +2,7 @@ import counterReducer, {
   CounterState,
   increment,
   decrement,
-  incrementByAmount,
+  incrementByAmount, resetCounter,
 } from './counterSlice';
 
 describe('counter reducer', () => {
@@ -30,5 +30,11 @@ describe('counter reducer', () => {
   it('should handle incrementByAmount', () => {
     const actual = counterReducer(initialState, incrementByAmount(2));
     expect(actual.value).toEqual(5);
+  });
+
+  // Added test: Reset counter
+  it('should handle incrementByAmount', () => {
+    const actual = counterReducer(initialState, resetCounter());
+    expect(actual.value).toEqual(0);
   });
 });

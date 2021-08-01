@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React, {useCallback, useState} from 'react';
 
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import {useAppSelector, useAppDispatch} from '../../app/hooks';
 import {
   decrement,
   increment,
   incrementByAmount,
-  incrementAsync,
-  incrementIfOdd,
   selectCount,
+  resetCounter
 } from './counterSlice';
 import styles from './Counter.module.css';
 
@@ -18,8 +17,16 @@ export function Counter() {
 
   const incrementValue = Number(incrementAmount) || 0;
 
+  const dispatchToApp = useCallback(() => {
+    window.open(`valeo-mobile://counter/${count}`, "_blank")
+    dispatch(resetCounter())
+  }, [count, dispatch])
+
   return (
     <div>
+      <h3>
+        Modify this value
+      </h3>
       <div className={styles.row}>
         <button
           className={styles.button}
@@ -37,6 +44,7 @@ export function Counter() {
           +
         </button>
       </div>
+      <h4>Or insert a number to add to the counter. A positive or negative value.</h4>
       <div className={styles.row}>
         <input
           className={styles.textbox}
@@ -50,17 +58,13 @@ export function Counter() {
         >
           Add Amount
         </button>
-        <button
-          className={styles.asyncButton}
-          onClick={() => dispatch(incrementAsync(incrementValue))}
-        >
-          Add Async
-        </button>
+      </div>
+      <div className={styles.row}>
         <button
           className={styles.button}
-          onClick={() => dispatch(incrementIfOdd(incrementValue))}
+          onClick={dispatchToApp}
         >
-          Add If Odd
+          Transfer to Phone App
         </button>
       </div>
     </div>
