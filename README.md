@@ -39,6 +39,16 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+### `yarn predeploy`
+
+**Note: This is an autorun script that runs before the deploy script. Not recommended**
+
+This command runs `yarn build`
+
+### `yarn deploy`
+
+Deploys the page to [https://aynofal.github.io/valeo-web](https://aynofal.github.io/valeo-web)
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
